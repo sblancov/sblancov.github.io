@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Articles by Santiago Blanco - sblancov</title>
+    <title>Colecciones - sblancov</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -9,15 +9,22 @@
 
 
 
+<link rel="canonical" href="http://sblancov.github.io/colecciones.html">
 
         <meta name="author" content="Santiago Blanco" />
+        <meta name="keywords" content="TAD,programming" />
+        <meta name="description" content="Qué son las colecciones" />
 
-    <!-- Open Graph tags -->
         <meta property="og:site_name" content="sblancov" />
-        <meta property="og:type" content="website"/>
-        <meta property="og:title" content="sblancov"/>
-        <meta property="og:url" content="http://sblancov.github.io"/>
-        <meta property="og:description" content="sblancov"/>
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Colecciones"/>
+        <meta property="og:url" content="http://sblancov.github.io/colecciones.html"/>
+        <meta property="og:description" content="Qué son las colecciones"/>
+        <meta property="article:published_time" content="2016-02-16" />
+            <meta property="article:section" content="Estructuras de datos" />
+            <meta property="article:tag" content="TAD" />
+            <meta property="article:tag" content="programming" />
+            <meta property="article:author" content="Santiago Blanco" />
 
 
     <!-- Bootstrap -->
@@ -32,6 +39,8 @@
 
 
 
+        <link href="http://sblancov.github.io/feeds/estructuras-de-datos.atom.xml" type="application/atom+xml" rel="alternate"
+              title="sblancov Estructuras de datos ATOM Feed"/>
 
 </head>
 <body>
@@ -50,7 +59,7 @@ sblancov            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                        <li >
+                        <li class="active">
                             <a href="http://sblancov.github.io/category/estructuras-de-datos.html">Estructuras de datos</a>
                         </li>
                         <li >
@@ -69,34 +78,66 @@ sblancov            </a>
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
-            <article>
-                <h2><a href="http://sblancov.github.io/scrum-team.html">Scrum Team</a></h2>
-                <div class="summary"><p>Explicación de los diferentes roles de Scrum</p>
-                    <a class="btn btn-default btn-xs" href="http://sblancov.github.io/scrum-team.html">more ...</a>
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://sblancov.github.io/colecciones.html"
+                       rel="bookmark"
+                       title="Permalink to Colecciones">
+                        Colecciones
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2016-02-16T00:00:00+01:00"> mar 16 febrero 2016</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://sblancov.github.io/tag/tad.html">TAD</a>
+        /
+	<a href="http://sblancov.github.io/tag/programming.html">programming</a>
+    
+</footer><!-- /.post-info -->                    </div>
                 </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://sblancov.github.io/definicion-principios-y-valores-de-scrum.html">Definición, principios y valores de Scrum.</a></h2>
-                <div class="summary"><p>La filosofía subyacente de Scrum</p>
-                    <a class="btn btn-default btn-xs" href="http://sblancov.github.io/definicion-principios-y-valores-de-scrum.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://sblancov.github.io/scrum.html">Scrum</a></h2>
-                <div class="summary"><p>Resumen de la guía de Scrum</p>
-                    <a class="btn btn-default btn-xs" href="http://sblancov.github.io/scrum.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://sblancov.github.io/colecciones.html">Colecciones</a></h2>
-                <div class="summary"><p>Qué son las colecciones</p>
-                    <a class="btn btn-default btn-xs" href="http://sblancov.github.io/colecciones.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
+                <h1>¿Qué es?</h1>
+<p>Es una estructura de datos que representa una colección genérica. En
+programación estructurada sería una Tipo Abstracto de Datos (TAD) y en
+programación orientada a objetos sería una clase.</p>
+<p>Dicho de otro modo, es un almacen de elementos organizado de alguna manera que
+sigue unas reglas de acceso específicas. Su tamaño depende del número de
+elementos que contiene.</p>
+<p>Se pueden considerar como collecciones las siguientes estructuras de datos:
+arrays, arrays asociativos, listas, colas, pilas, árboles y un largo etc.</p>
+<h1>Características</h1>
+<p>Se pueden clasificar de diversas maneras dependiendo en lo que nos fijemos:</p>
+<ul>
+<li>Acceso. Es la manera en la que se realiza el acceso a los datos contenidos.</li>
+<li>Almacenamiento. Es la manera en la que se almacenan los elementos contenidos.</li>
+<li>Recorrido. Es la manera en la que se recorren los elementos contenidos.</li>
+</ul>
+<h1>Operaciones</h1>
+<ul>
+<li>Crear contenedor vacío.</li>
+<li>Insertar un elemento.</li>
+<li>Eliminar un elemento.</li>
+<li>Eliminar todos los elementos.</li>
+<li>Acceder a un elemento.</li>
+<li>Determinar el número de elementos contenidos.</li>
+</ul>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
 
         </div>
         <div class="col-sm-3" id="sidebar">
