@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Introducción a Docker - sblancov</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="/introduccion-a-docker.html">
+
+        <meta name="author" content="Santiago Blanco" />
+        <meta name="keywords" content="Docker,Deployment" />
+        <meta name="description" content="Resumen de los mandatos más usados en Docker." />
+
+        <meta property="og:site_name" content="sblancov" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Introducción a Docker"/>
+        <meta property="og:url" content="/introduccion-a-docker.html"/>
+        <meta property="og:description" content="Resumen de los mandatos más usados en Docker."/>
+        <meta property="article:published_time" content="2017-12-29" />
+            <meta property="article:section" content="Docker" />
+            <meta property="article:tag" content="Docker" />
+            <meta property="article:tag" content="Deployment" />
+            <meta property="article:author" content="Santiago Blanco" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+sblancov            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="/category/docker.html">Docker</a>
+                        </li>
+                        <li >
+                            <a href="/category/estructuras-de-datos.html">Estructuras de datos</a>
+                        </li>
+                        <li >
+                            <a href="/category/scrum.html">Scrum</a>
+                        </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="/introduccion-a-docker.html"
+                       rel="bookmark"
+                       title="Permalink to Introducción a Docker">
+                        Introducción a Docker
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2017-12-29T00:00:00+01:00"> vie 29 diciembre 2017</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="/tag/docker.html">Docker</a>
+        /
+	<a href="/tag/deployment.html">Deployment</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <h1>Docker</h1>
+<h2>Ejecutar un contenedor</h2>
+<p>Docker puede ejecutar contenedores de diferentes maneras:
+<em> <strong>Single task:</strong> Esto es ejecutar una tarea y terminar.
+</em> <strong>Interactive:</strong> Usar el contenedor de forma interactiva, algo así como SSH.
+* <strong>Background:</strong> Usarlo como demonio.</p>
+<h3>Single task</h3>
+<p>Para ejecutar un mandato en un contenedor:</p>
+<div class="highlight"><pre>docker container run alpine hostname
+</pre></div>
+
+
+<p>Para listar todos los contenedores existentes:</p>
+<div class="highlight"><pre>docker container ls --all
+</pre></div>
+
+
+<h3>Interactivo</h3>
+<p>Para usar de manera interactiva un programa es necesario ejecutar algo parecido al siguiente mandato:</p>
+<div class="highlight"><pre>docker container run --interactive --tty --rm ubuntu bash
+</pre></div>
+
+
+<p>donde:
+<em> --rm elimina el contenedor cuando termina su ejecución.
+</em> --interactive hace que el contenedor se ejecute en modo interactivo.</p>
+<h3>Background</h3>
+<p>Para ejecutar un contenedor en modo background hay que escribir algo parecido a lo siguiente:</p>
+<div class="highlight"><pre>docker container run --detach --name mydb -e MYSQL_ROOT_PASS=1234 mysql:latest
+</pre></div>
+
+
+<p>donde:
+<em> --detach hace que sea un contenedor en modo background.
+</em> --name especifica el nombre del contenedor que se quiere usar.
+* -e MYSQL_ROOT_PASS=1234 establece dentro del contenedor una variable de entorno.</p>
+<p>Para ver los logs generados por la aplicación podemos ejecutar:</p>
+<div class="highlight"><pre>docker logs mydb
+</pre></div>
+
+
+<p>Para ejecutar un mandato en un contenedor que está corriendo en este modo:</p>
+<div class="highlight"><pre>docker exec -it mydb sh
+</pre></div>
+
+
+<h2>Crear una imagen</h2>
+<p>Para crear una imagen de docker hay que crear un Dockerfile. Un ejemplo bastante básico de Dockerfile puede ser el siguiente:</p>
+<div class="highlight"><pre>FROM nginx:latest
+COPY index.html /usr/share/nginx/html
+EXPOSE 80 443
+CMD [“nginx”, “-g”, “daemon off;”]
+</pre></div>
+
+
+<p>Con este fichero podríamos crear una imagen basada en otra imagen denominada nginx, se copia un fichero del host en la imagen, se abren los puertos 80 y 443, y se ejecuta nginx al iniciar el contenedor.</p>
+<p>Para crear la imagen de los contenedores tan sólo habría que ejecutar, en el directorio donde se encuentre el fichero Dockerfile, el siguiente mandato:</p>
+<div class="highlight"><pre>docker image build --tag yomismo/mynginx:1.0 .
+</pre></div>
+
+
+<p>donde:
+<em> --tag <user_name/image_name:version> es el identificador que se le asigna a la imagen.
+</em> el punto final es el path donde se encuentra el Dockerfile</p>
+<h2>Ejecución de contenedores</h2>
+<p>Después de crear la imagen, ya se puede ejecutar el contenedor (la imágen está en el registro de docker local de nuestra máquina).</p>
+<p>Como el contenedor creado es un servidor HTTP, debemos ejecutar el contenedor en modo Background:</p>
+<div class="highlight"><pre>docker container run -d --publish 80:80 --name mynginx yomismo/mynginx:1.0
+</pre></div>
+
+
+<p>donde:
+<em> -d es equivalente a --detach, es decir, para ejecutar en modo background.
+</em> --publish <host:container> crea un tunel entre el puerto del host y el del contenedor.
+* --name <nombre> le asigna un identificador al contenedor.</p>
+<p>Si quisiéramos probar una aplicación que estamos ejecutando actualmente, tan solo tendríamos que agregar la opción mount apropiadamente:</p>
+<div class="highlight"><pre>docker container run --mount=bind,source=”host_path”,target=”container_path”
+</pre></div>
+
+
+<p>donde:
+* --mount con la opción “bind” provoca que cada cambio que realicemos en nuestro en el directorio del host se va a ver reflejado en el contenedor.</p>
+<p>Cuando hayamos terminado de ejecutar el contenedor deberíamos pararlo y borrarlo:</p>
+<div class="highlight"><pre>docker container rm --force mynginx
+</pre></div>
+
+
+<p>donde:
+* --force hace un stop antes del rm.</p>
+<h2>Subir una imagen a dockerhub</h2>
+<p>Lo primero que hay que hacer es autenticarse en dockerhub mediante:</p>
+<div class="highlight"><pre>docker login
+</pre></div>
+
+
+<p>Después de la autenticación ya se puede subir una imagen que tengamos registradas en el registry local:</p>
+<div class="highlight"><pre><span class="x">docker image push </span><span class="p">$</span><span class="nv">DOCKERID</span><span class="x">/linux_tweet_app:1.0</span>
+</pre></div>
+
+
+<p><strong>NOTA:</strong> Dockerhub es uno de los posibles registries que hay para docker.</p>
+<h2>Enlaces</h2>
+<p>http://training.play-with-docker.com/</p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="https://twitter.com/sblancov84"><i class="fa fa-twitter-square fa-lg"></i> Twitter</a></li>
+                <li class="list-group-item"><a href="https://github.com/sblancov"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 Santiago Blanco
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+
+</body>
+</html>
